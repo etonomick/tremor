@@ -23,7 +23,8 @@ export interface ButtonInlineProps {
     color?: Color,
     handleClick?: { (): void },
     marginTop?: MarginTop,
-    disabled?: boolean
+    disabled?: boolean,
+    loading?: boolean,
 }
 
 const ButtonInline = ({
@@ -34,7 +35,8 @@ const ButtonInline = ({
     size = Sizes.SM,
     color = BaseColors.Blue,
     marginTop = 'mt-0',
-    disabled = false
+    disabled = false,
+    loading = false,
 }: ButtonInlineProps) => {
     const buttonSize = isValidSize(size) ? size : Sizes.SM;
     const Icon = icon ? icon : null;
@@ -53,8 +55,11 @@ const ButtonInline = ({
                     !disabled ? classNames(
                         getColorVariantsFromColorThemeValue(getColorTheme(color).darkText).hoverTextColor,
                     ) : 'tr-opacity-50',
+                    !loading ? classNames(
+                        getColorVariantsFromColorThemeValue(getColorTheme(color).darkText).hoverTextColor,
+                    ) : 'tr-animate-pulse',
                 )}
-                disabled={ disabled }
+                disabled={ disabled || loading }
             >
                 {Icon && (iconPosition !== HorizontalPositions.Right) ? ( // ensures that icon is rendered if iconPosition is misspelled
                     <Icon
