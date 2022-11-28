@@ -79,4 +79,9 @@ WithDisabled.args = {
     disabled: true,
 };
 
+export const WithLoading = ResponsiveFlexTemplate.bind({});
+WithLoading.args = {
+    loading: true,
+};
+
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
